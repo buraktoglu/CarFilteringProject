@@ -1,0 +1,91 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+@model Filters
+
+@{
+    List<Car> cars = new List<Car>();
+
+    if (ViewBag.Cars != null)
+    {
+        cars = ViewBag.Cars;
+    }
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+</head>
+<body>
+
+    <form asp-action="Index" asp-controller="Filter" method="post">
+        <div class="row">
+
+            <div class="col-md-3">
+                <select name="Color" asp-items="@(new SelectList(ViewBag.Colors))" class="form-control">
+                    <option value="">Select Color</option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <select name="Transmission" asp-items="@(new SelectList(ViewBag.Transmissions))" class="form-control">
+                    <option value="">Select Transmission Type</option>
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <select name="Brand" asp-items="@(new SelectList(ViewBag.Brands))" class="form-control">
+                    <option value="">Select Brand</option>
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <select name="Year" asp-items="@(new SelectList(ViewBag.Years))" class="form-control">
+                    <option value="">Select Year</option>
+                </select>
+            </div>
+
+            <div class="col-md-1">
+                <input type="submit" class="btn btn-success" name="name" value="Filter Cars" />
+            </div>
+
+        </div>
+    </form>
+
+    <hr />
+
+    <div class="container">
+
+        <div class="row">
+
+            @foreach (var car in cars)
+            {
+                <div class="col-md-4" style="margin-bottom:2%">
+                    
+                        <div class="card-body">
+                            <h5 class="card-title">@car.title</h5>
+                            <p class="card-text">Price       : @car.price</p>
+                            <p class="card-text">Brand       : @car.brand</p>
+                            <p class="card-text">Model       : @car.model</p>
+                            <p class="card-text">Color       : @car.extcolor</p>
+                            <p class="card-text">Trans       : @car.trans</p>
+                            <p class="card-text">Year        : @car.year</p>
+                        </div>
+                    
+                </div>
+            }
+
+
+        </div>
+
+    </div>
+
+
+
+</body>
+</html>
+
