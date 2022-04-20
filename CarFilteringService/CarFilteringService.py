@@ -17,7 +17,7 @@ def ListCars():
     driver = webdriver.Firefox(service = Service(GeckoDriverManager().install()))
     driver.implicitly_wait(8)
     driver.maximize_window()
-    driver.get("https://www.cars.com/for-sale/searchresults.action")
+    driver.get("https://www.cars.com/shopping/results/")
 
     def getCarFeatures():     
         price = driver.find_element(By.XPATH, "/html/body/section/div[5]/section/header/div[2]/span").text
